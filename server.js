@@ -9,7 +9,7 @@ app.use(express.static(path.join(__dirname, "views")));
 app.set('views', __dirname + '/views');
 
 app.get('/', (req, res) => {
-    res.render('index');
+    res.render('index',{ active: "index" });
 });
 
 app.get('/index', (req, res) => {
