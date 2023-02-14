@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 8080;
 const fs = require('fs');
 const path = require('path');
 
@@ -9,6 +9,7 @@ app.use(express.static(path.join(__dirname, "views")));
 app.set('views', __dirname + '/views');
 
 app.get('/', (req, res) => {
+    console.log("index page")
     res.render('index',{ active: "index" });
 });
 
