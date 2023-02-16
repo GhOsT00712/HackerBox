@@ -23,9 +23,9 @@
                         <h3 class="text-white py-3 px-4 m-0">Team Members</h3>
                         <% data.team.forEach(member=>{ %>
                             <div class="d-flex justify-content-between border-bottom px-4">
-                                <h6 class="text-white my-3">Member</h6>
+                                <h6 class="text-white my-3"><%=member.type%></h6>
                                 <h6 class="text-white my-3">
-                                    <%=member%>
+                                    <%=member.name%>
                                 </h6>
                             </div>
                             <%}) %>

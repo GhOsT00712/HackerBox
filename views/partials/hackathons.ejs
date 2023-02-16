@@ -12,19 +12,19 @@
         <div class="owl-carousel courses-carousel">
             <% data.forEach(hackathon=>{ %>
                 <div class="courses-item position-relative">
-                    <img class="img-fluid" src="<%=hackathon.imageUrl%>>" alt="">
+                    <img class="img-fluid" src="<%=hackathon.data.imageUrl%>>" alt="">
                     <div class="courses-text">
                         <h4 class="text-center text-white px-3">
-                            <%=hackathon.name%>
+                            <%=hackathon.data.name%>
                         </h4>
                         <div class="border-top w-100 mt-3">
                             <div class="d-flex justify-content-between p-4">
                                 <span class="text-white"><i class="fa fa-user mr-2"></i>
-                                    <%=hackathon.tags%>
+                                    <%=hackathon.data.tags%>
                                 </span>
                                 <span class="text-white"><i class="fa fa-star mr-2"></i>Status
                                     <small>
-                                        <% if(hackathon.isActive==true){%>(Active)<%}else{%>
+                                        <% if(hackathon.data.isActive==true){%>(Active)<%}else{%>
                                                 (Closed)<%}%>
                                     </small></span>
                             </div>
