@@ -36,6 +36,15 @@ app.get('/detail/:hackathonId', (req, res) => {
     })
 
 })
+
+app.get('/detail/:hackathonId/overview/:hackId', (req, res) => {
+    client.get('https://mocki.io/v1/a278b51b-6e40-4607-a4c5-be77d1124c47')
+    .then(apiResp=>{
+        console.log(apiResp.data)
+        res.render('index',{ active: "hackdetails", data: apiResp.data });
+    })
+});
+
 app.get('/index', (req, res) => {
     res.render('/', { active: "index" });
 });

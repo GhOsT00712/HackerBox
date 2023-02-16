@@ -15,7 +15,7 @@
                 <% data.forEach(hack=>{ %>
                 <div class="col-lg-4 col-md-6 pb-4">
                     <a class="courses-list-item position-relative d-block overflow-hidden mb-2"
-                        href="<%=hack.hackthonId%>/details/<%=hack.Id%>/overview">
+                        href="/detail/<%=hack.hackathonId%>/overview/<%=hack.id%>">
                         <img class="img-fluid" src="<%=hack.imageUrl%>" alt="">
                         <div class="courses-text">
                             <h4 class="text-center text-white px-3"><%=hack.name%></h4>

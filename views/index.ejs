@@ -34,70 +34,8 @@
     <!-- Header End -->
     
     <!-- About Start -->
-    <% if(active=='index' ){ %>
-        <div class="container-fluid py-5">
-                            <div class="container py-5">
-                                <div class="row">
-                                    <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px;">
-                                        <div class="position-relative h-100">
-                                            <img class="position-absolute w-100 h-100" src="img/about.jpg"
-                                                style="object-fit: cover;">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-7">
-                                        <div class="section-title position-relative mb-4">
-                                            <h6
-                                                class="d-inline-block position-relative text-secondary text-uppercase pb-2">
-                                                About Us
-                                            </h6>
-                                            <h1 class="display-4">Turn an Idea into Hack</h1>
-                                        </div>
-                                        <p>Showcase your ideas and innovation. Create a team collaboration with
-                                            different
-                                            people
-                                            inside
-                                            your organisation.</p>
-                                        <div class="row pt-3 mx-0">
-                                            <div class="col-3 px-0">
-                                                <div class="bg-success text-center p-4">
-                                                    <h1 class="text-white" data-toggle="counter-up">20</h1>
-                                                    <h6 class="text-uppercase text-white">Total<span
-                                                            class="d-block">Orgs</span>
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <div class="col-3 px-0">
-                                                <div class="bg-primary text-center p-4">
-                                                    <h1 class="text-white" data-toggle="counter-up">1325</h1>
-                                                    <h6 class="text-uppercase text-white">Registered<span
-                                                            class="d-block">Users</span>
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <div class="col-3 px-0">
-                                                <div class="bg-secondary text-center p-4">
-                                                    <h1 class="text-white" data-toggle="counter-up">40</h1>
-                                                    <h6 class="text-uppercase text-white">Active<span
-                                                            class="d-block">Hacks</span></h6>
-                                                </div>
-                                            </div>
-                                            <div class="col-3 px-0">
-                                                <div class="bg-warning text-center p-4">
-                                                    <h1 class="text-white" data-toggle="counter-up">7</h1>
-                                                    <h6 class="text-uppercase text-white">Innovation<span
-                                                            class="d-block">Ideas</span>
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-        </div>
-    <% } %>
+    <%-include('partials/about') %>
     <!-- About End -->
-
-
 
     <!-- Courses Start -->
     <%-include('partials/hackathons');%>
@@ -106,6 +44,10 @@
     <!-- Courses detail Start -->
     <%-include('partials/details');%>
     <!-- Courses detail End -->
+
+    <!-- Detail Start -->
+    <%-include('partials/hackdetails');%>
+    <!-- Detail End -->
 
     <!-- Contact Start -->
     <%- include('partials/create');%>
