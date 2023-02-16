@@ -52,5 +52,11 @@ app.get('/index', (req, res) => {
 app.get('/create', (req, res) => {
     res.render('index', { active: "create" });
 });
+
+app.get('/registerHack', (req, res) => {
+    res.render('index', {active: "registerHack" });
+});
+
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
