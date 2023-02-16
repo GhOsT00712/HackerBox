@@ -49,10 +49,6 @@ app.get('/index', (req, res) => {
     res.render('/', { active: "index" });
 });
 
-app.get('/create', (req, res) => {
-    res.render('index', { active: "create" });
-});
-
 app.get('/registerHack', (req, res) => {
     res.render('index', {active: "registerHack" });
 });
