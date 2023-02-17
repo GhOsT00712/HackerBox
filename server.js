@@ -134,11 +134,17 @@ app.post('/createGroup',(req, res) => {
     client.post(exchangeAPI+ '/api/beta/me/CreateGroup', ugData, config)
     .then(apiResp => {
         console.log(apiResp.data);
-        formData.competition = 8;
-        formData.ugid = apiResp.data.Id;
-        formData.email = apiResp.data.EmailAddress;
-        formData.tags = tagArr;
-        formData.imageUrl = "https://img.freepik.com/free-vector/global-data-security-personal-data-security-cyber-data-security-online-concept-illustration-internet-security-information-privacy-protection_1150-37352.jpg?w=2000&t=st=1676472492~exp=1676473092~hmac=68b9c36e600035fb763095620e5eb91f89a7fe505737aa70c87c16b2d4de523c";
+        formData = {
+            name: req.body.name,
+            Description: req.body.desc,
+            Alias:req.body.alias,
+            AccessType: "Private",
+            competition: 8,
+            ugid: apiResp.data.Id,
+            email: apiResp.data.EmailAddress,
+            tags: tagArr,
+            imageUrl: "https://img.freepik.com/free-vector/global-data-security-personal-data-security-cyber-data-security-online-concept-illustration-internet-security-information-privacy-protection_1150-37352.jpg?w=2000&t=st=1676472492~exp=1676473092~hmac=68b9c36e600035fb763095620e5eb91f89a7fe505737aa70c87c16b2d4de523c" 
+        };
         client.post(hackAPI + '/groups', formData)
         .then(apiResp => {
               res.redirect(req.get('referer'));
