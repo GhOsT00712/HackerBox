@@ -136,7 +136,7 @@ app.post('/createGroup',(req, res) => {
         console.log(apiResp.data);
         formData = {
             name: req.body.name,
-            Description: req.body.desc,
+            description: req.body.desc,
             Alias:req.body.alias,
             AccessType: "Private",
             competition: 8,

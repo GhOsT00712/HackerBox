@@ -27,12 +27,14 @@
                                 <h6 class="text-white my-3">
                                     <%=member.name%>
                                 </h6>
-                            </div>
+                            </div>                    
                             <%}) %>
-                                <h5 class="text-white py-3 px-4 m-0">Hack open to join: Yes</h5>
-                                <div class="py-3 px-4">
-                                    <a class="btn btn-block btn-secondary py-3 px-5" href="/addmember/<%=data.ugid%>">Join now</a>
-                                </div>
+                            <h5 class="text-white py-3 px-4 m-0">Hack open to join: Yes</h5>
+                            <% if(!(data.team.includes(currentUser))){ %>
+                            <div class="py-3 px-4">
+                                <a class="btn btn-block btn-secondary py-3 px-5" href="/addmember/<%=data.ugid%>">Join now</a>
+                            </div>  
+                            <%}%>                             
                     </div>
                 </div>
             </div>
