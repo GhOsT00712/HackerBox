@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, "views")));
 app.use('*', (req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    req.currentUser = "Krishna@hack.org";
+    req.currentUser = "krishna@hack.org";
     next()
 })
 app.set('views', __dirname + '/views');
@@ -83,9 +83,13 @@ app.get('/overview/:hackId', (req, res) => {
                         description: apiResp.data.data.description,
                         imageUrl: apiResp.data.data.imageUrl,
                         ugid: apiResp.data.data.ugid,
-                        team: []
+                        team: [],
+                        isJoined: false
                     }
                     exchResp.data.value.forEach(member => {
+                        if(member.EmailAddress == req.currentUser){
+                            hackData.isJoined = true;
+                        }
                         hackData.team.push({
                             name: member.DisplayName == "sudoAdmin" ? "Piyush" : member.DisplayName,
                             email: member.EmailAddress == "sudoadmin@hack.org" ? req.currentUser : member.EmailAddress,
@@ -105,8 +109,8 @@ app.get('/index', (req, res) => {
     res.render('/', { active: "index" });
 });
 
-app.get('/registerHack', (req, res) => {
-    res.render('index', { active: "registerHack", currentUser: req.currentUser });
+app.get('/registerHack/:created', (req, res) => {
+    res.render('index', { active: "registerHack", currentUser: req.currentUser, created : req.params.created });
 });
 
 app.get('/addmember/:ugId', (req, res) => {
@@ -143,11 +147,12 @@ app.post('/createGroup', (req, res) => {
             ugid: apiResp.data.Id,
             email: apiResp.data.EmailAddress,
             tags: tagArr,
+            status: "Active",
             imageUrl: "https://img.freepik.com/free-vector/global-data-security-personal-data-security-cyber-data-security-online-concept-illustration-internet-security-information-privacy-protection_1150-37352.jpg?w=2000&t=st=1676472492~exp=1676473092~hmac=68b9c36e600035fb763095620e5eb91f89a7fe505737aa70c87c16b2d4de523c" 
-        };
+        }
         client.post(hackAPI + '/groups', formData)
         .then(apiResp => {
-              res.redirect(req.get('referer'));
+              res.redirect("/registerHack/created");
               //res.render('index', { active: "registerHack", currentUser: req.currentUser });
         })
     })
