@@ -82,6 +82,7 @@ app.get('/overview/:hackId', (req, res) => {
                         name: apiResp.data.data.name,
                         description: apiResp.data.data.description,
                         imageUrl: apiResp.data.data.imageUrl,
+                        ugid: apiResp.data.data.ugid,
                         team: []
                     }
                     exchResp.data.value.forEach(member => {
@@ -108,14 +109,24 @@ app.get('/registerHack', (req, res) => {
     res.render('index', { active: "registerHack", currentUser: req.currentUser });
 });
 
+app.get('/addmember/:ugId', (req,res) => {
+    var members = {
+        "Members":[req.currentUser]
+    };
+    client.post(exchangeAPI + `/api/v2.0/Groups('OID:`+ req.params.ugId+`')/addmembers`,members,config)
+    .then(apiResp => {
+        res.redirect(req.get('referer'));
+    })
+})
+
 app.post('/createGroup',(req, res) => {
     var formData = {
-                DisplayName: req.body.name,
-                Description: req.body.desc,
-                Alias:req.body.alias,
-                AccessType: "Private"
-                
-            };
+        DisplayName: req.body.name,
+        Description: req.body.desc,
+        Alias:req.body.alias,
+        AccessType: "Private"
+        
+    };
     var ugData = {
         Group:formData
     }
@@ -123,12 +134,17 @@ app.post('/createGroup',(req, res) => {
     .then(apiResp => {
         console.log(apiResp.data);
         formData.competition = "c1";
-        formData.ugId = apiResp.data.Id;
+        formData.ugid = apiResp.data.Id;
         formData.email = apiResp.data.EmailAddress;
         client.post(hackAPI + '/groups', formData)
         .then(apiResp => {
-              res.render('index', { active: "registerHack", currentUser: req.currentUser });
+              res.redirect(req.get('referer'));
+              //res.render('index', { active: "registerHack", currentUser: req.currentUser });
         })
+    })
+    .catch(err => {
+        console.log(err);
+        res.render('index', { active: "registerHack", currentUser: req.currentUser });
     })
 });
 
